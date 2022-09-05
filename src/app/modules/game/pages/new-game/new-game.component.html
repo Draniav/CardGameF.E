@@ -1,0 +1,29 @@
+<h1>Marvel Card Game</h1>
+<form [formGroup]="form" (submit)="sendForm()">
+
+
+
+  <select formControlName="players"
+          multiple
+          title="Players list"
+          name="players"
+          id="3">
+
+    <option *ngFor="let p of players" [value]="p.id">{{p.name}}</option>
+  </select>
+
+  <p>
+
+  </p>
+
+  <label *ngIf="form.invalid && form.touched">{{
+    form.get("players")?.getError("minRequired")
+    }}</label>
+
+  <p>
+  </p>
+  <button [disabled]="form.invalid" type="submit">New game</button>
+  
+<button class="logOutBtn" (click)="logOut()"> LogOut</button>
+
+</form>
