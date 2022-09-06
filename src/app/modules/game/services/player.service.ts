@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { PlayerModel } from '../models/playerModel';
 import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/compat/firestore';
+  Firestore,
+  collection,
+  addDoc,
+  collectionData,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+
+//Models
+import { PlayerModel } from '../models/playerModel';
+import { UserGoogle } from '../models/user-google.models';
 
 @Injectable({
   providedIn: 'root',
@@ -11,32 +17,44 @@ import {
 export class PlayerService {
   //private collection: AngularFirestoreCollection<PlayerModel>;
 
-  //constructor(private storage: AngularFirestore) {
-   // this.collection = storage.collection<PlayerModel>('players');
-  //}
+  constructor(private firestore: Firestore) {
+    // this.collection = storage.collection<PlayerModel>('players');
+    //}
+  }
+  addUser(user: UserGoogle) {
+    const userRef = collection(this.firestore, 'users');
+    return addDoc(userRef, user);
+  }
+
+  getAllPlayers(): Observable<UserGoogle[]> {
+    const userRef = collection(this.firestore, 'users');
+    return collectionData(userRef, { idField: 'id' }) as Observable<
+      UserGoogle[]
+    >;
+  }
 
   getPlayers(): Array<PlayerModel> {
     //const players = new Array<PlayerModel>();
     const players = [];
     players.push({
       name: 'Camilo',
-      id: '123',
+      uid: '123',
     });
     players.push({
       name: 'Luisa',
-      id: '321',
+      uid: '321',
     });
     players.push({
       name: 'Sebastian',
-      id: '456',
+      uid: '456',
     });
     players.push({
       name: 'Jorge',
-      id: '789',
+      uid: '789',
     });
     players.push({
       name: 'Alexander',
-      id: '888',
+      uid: '888',
     });
 
     return players;

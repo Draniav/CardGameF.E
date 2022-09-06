@@ -1,17 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//services
 import { AuthService } from '../../services/auth.service';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private playerService: PlayerService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService.addUser({
+      uid: '',
+      email: 'prueba@test.com',
+      displayName: 'Alex2',
+      photoURL: '<profilePicture2>',
+    });
+  }
 
   login() {
-    this.authService.loginWithGoogle().then(() => this.router.navigate(['/game/new']));
+    this.authService
+      .loginWithGoogle()
+      .then(() => this.router.navigate(['/game/new']))
+      .then(() => console.log('Hola mundo'));
   }
 }

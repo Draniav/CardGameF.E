@@ -3,5 +3,4 @@ export interface UserGoogle {
   email: string;
   displayName: string;
   photoURL: string;
-  emailVerified: string;
 }

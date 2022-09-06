@@ -9,7 +9,7 @@
           name="players"
           id="3">
 
-    <option *ngFor="let p of players" [value]="p.id">{{p.name}}</option>
+    <option *ngFor="let p of players" [value]="p.uid">{{p.name}}</option>
   </select>
 
   <p>
@@ -23,7 +23,7 @@
   <p>
   </p>
   <button [disabled]="form.invalid" type="submit">New game</button>
-  
+
 <button class="logOutBtn" (click)="logOut()"> LogOut</button>
 
 </form>
