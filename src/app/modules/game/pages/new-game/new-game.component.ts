@@ -53,7 +53,7 @@ export class NewGameComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.logOut().then(() => this.router.navigate(['game/login']));
+    this.authService.logOut().then(() => this.router.navigate(['login']));
   }
 
   submit() {
