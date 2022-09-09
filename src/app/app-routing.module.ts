@@ -15,16 +15,25 @@ const routes: Routes = [
     path: 'game/new',
     component: NewGameComponent,
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
+    pathMatch: 'full',
   },
   {
     path: 'game/tablero',
     component: TableroComponent,
+    pathMatch: 'full',
   },
 
   {
     path: 'game/login',
     component: LoginComponent,
     ...canActivate(() => redirectLoggedInTo(['game/new'])),
+    pathMatch: 'full',
+  },
+
+  {
+    path: '',
+    redirectTo: 'game/login',
+    pathMatch: 'full',
   },
 ];
 

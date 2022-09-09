@@ -4,7 +4,6 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  user,
 } from '@angular/fire/auth';
 
 @Injectable({

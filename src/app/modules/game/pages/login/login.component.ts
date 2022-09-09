@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 //services
-import { AuthService } from '../../services/auth.service';
-import { PlayerService } from '../../services/player.service';
+import { AuthService } from '../../services/auth/auth.service';
+import { PlayerService } from '../../services/player/player.service';
 
 @Component({
   templateUrl: './login.component.html',

@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
 import {
-  Firestore,
-  collection,
   addDoc,
+  collection,
   collectionData,
+  CollectionReference,
+  doc,
+  Firestore,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 //Models
-import { PlayerModel } from '../models/playerModel';
-import { UserGoogle } from '../models/user-google.models';
+
+import { HttpClient } from '@angular/common/http';
+import { PlayerModel } from '../../models/playerModel';
+import { UserGoogle } from '../../models/user-google.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  //private collection: AngularFirestoreCollection<PlayerModel>;
+  playerRef: CollectionReference = collection(this.firestore, 'users');
 
-  constructor(private firestore: Firestore) {
-    // this.collection = storage.collection<PlayerModel>('players');
-    //}
-  }
+  constructor(private firestore: Firestore, private http: HttpClient) {}
+
   addUser(user: UserGoogle) {
     const userRef = collection(this.firestore, 'users');
     return addDoc(userRef, user);
@@ -31,6 +33,10 @@ export class PlayerService {
     return collectionData(userRef, { idField: 'id' }) as Observable<
       UserGoogle[]
     >;
+  }
+
+  public createGame(body: any) {
+    return this.http.post('http://localhost:8081/juego/crear/', { ...body });
   }
 
   getPlayers(): Array<PlayerModel> {

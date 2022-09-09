@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayerModel } from '../../models/playerModel';
-import { PlayerService } from '../../services/player.service';
+import { PlayerService } from '../../services/player/player.service';
 import {
   AbstractControl,
   FormControl,
@@ -8,7 +8,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -49,5 +49,20 @@ export class NewGameComponent implements OnInit {
 
   logOut(): void {
     this.authService.logOut().then(() => this.router.navigate(['game/login']));
+  }
+
+  submit() {
+    this.playerService
+      .createGame({
+        juegoId: '12345',
+        jugadores: {
+          'uid-001': 'camilo',
+          'uid-002': 'andres',
+        },
+        jugadorPrincipal: 'uid-001',
+      })
+      .subscribe((suscribe) => {
+        console.log(suscribe);
+      });
   }
 }

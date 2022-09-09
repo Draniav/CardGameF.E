@@ -1,6 +1,7 @@
 <h1>Marvel Card Game</h1>
-<form [formGroup]="form" (submit)="sendForm()">
 
+<img src="src/assets/Banner_Marvel.jpeg" alt="Italian Trulli">
+<form [formGroup]="form" (submit)="sendForm()">
 
 
   <select formControlName="players"
@@ -22,7 +23,7 @@
 
   <p>
   </p>
-  <button [disabled]="form.invalid" type="submit">New game</button>
+  <button [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
 
 <button class="logOutBtn" (click)="logOut()"> LogOut</button>
 
