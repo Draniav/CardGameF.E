@@ -1,6 +1,9 @@
+<title> 
 <h1>Marvel Card Game</h1>
+</title>
 
-<img src="src/assets/Banner_Marvel.jpeg" alt="Italian Trulli">
+<body>
+
 <form [formGroup]="form" (submit)="sendForm()">
 
 
@@ -10,7 +13,7 @@
           name="players"
           id="3">
 
-    <option *ngFor="let p of players" [value]="p.uid">{{p.name}}</option>
+    <option *ngFor="let p of players" [value]="p.uid">{{p.displayName}}</option>
   </select>
 
   <p>
@@ -28,3 +31,4 @@
 <button class="logOutBtn" (click)="logOut()"> LogOut</button>
 
 </form>
+</body>

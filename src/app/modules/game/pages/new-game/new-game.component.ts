@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
+import { UserGoogle } from '../../models/user-google.models';
 
 @Component({
   selector: 'app-new-game',
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./new-game.component.scss'],
 })
 export class NewGameComponent implements OnInit {
-  players: PlayerModel[] | undefined;
+  players: UserGoogle[] | undefined;
   form = new FormGroup({});
 
   constructor(
@@ -25,11 +26,15 @@ export class NewGameComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-    this.players = this.playerService.getPlayers();
+    this.players = [];
     this.form = this.createForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.playerService.getAllPlayers().subscribe((players) => {
+      this.players = players!;
+    });
+  }
 
   private createForm(): FormGroup {
     return new FormGroup({
