@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TableroComponent } from './modules/game/pages/tablero/tablero.component';
 import { NewGameComponent } from './modules/game/pages/new-game/new-game.component';
-import { ScoreComponent } from './modules/game/pages/score/score.component';
+import { LobbyComponent } from './modules/game/pages/lobby/lobby.component';
 
 //Firestore
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -22,7 +22,7 @@ import { AuthModule } from './modules/auth/auth.module';
     AppComponent,
     TableroComponent,
     NewGameComponent,
-    ScoreComponent,
+    LobbyComponent,
   ],
   imports: [
     BrowserModule,

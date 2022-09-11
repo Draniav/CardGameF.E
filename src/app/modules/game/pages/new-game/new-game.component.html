@@ -1,5 +1,5 @@
-<title> 
-<h1>Marvel Card Game</h1>
+<title>
+  <h1>Marvel Card Game</h1>
 </title>
 
 <body>
@@ -28,7 +28,7 @@
   </p>
   <button [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
 
-<button class="logOutBtn" (click)="logOut()"> LogOut</button>
-
+  <button class="logOutBtn" (click)="logOut()"> LogOut</button>
+  <button [disabled]="form.invalid" type="submit" (click)="board()">ir a tablero</button>
 </form>
 </body>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PlayerModel } from '../../models/playerModel';
 import { PlayerService } from '../../services/player/player.service';
 import {
   AbstractControl,
@@ -11,6 +10,7 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserGoogle } from '../../models/user-google.models';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'app-new-game',
@@ -20,17 +20,24 @@ import { UserGoogle } from '../../models/user-google.models';
 export class NewGameComponent implements OnInit {
   players: UserGoogle[] | undefined;
   form = new FormGroup({});
+  WebsocketService: any;
 
   constructor(
     private playerService: PlayerService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private client: WebsocketService
   ) {
     this.players = [];
     this.form = this.createForm();
   }
 
   ngOnInit(): void {
+    this.WebsocketService.connect('123').subscribe({
+      next: (data: any) => console.log(data),
+      error: (err: any) => console.log(err),
+      complete: () => console.log('complete()'),
+    });
     this.playerService.getAllPlayers().subscribe((players) => {
       this.players = players!;
     });
@@ -49,6 +56,7 @@ export class NewGameComponent implements OnInit {
   }
 
   sendForm(): void {
+    this.router.navigate(['lobby']);
     console.log(this.form);
   }
 
@@ -69,5 +77,9 @@ export class NewGameComponent implements OnInit {
       .subscribe((suscribe) => {
         console.log(suscribe);
       });
+  }
+
+  board() {
+    this.router.navigate(['tablero']);
   }
 }
