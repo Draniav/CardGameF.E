@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/websocket';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,7 @@ export class WebsocketService {
 
   disconnect() {
     this.socket.unsubscribe();
-    this.socket.complete();
+    //  this.socket.complete();
   }
 
   crearjuego(body: {}) {
