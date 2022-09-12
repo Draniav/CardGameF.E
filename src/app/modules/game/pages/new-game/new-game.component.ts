@@ -10,7 +10,7 @@ import {
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserGoogle } from '../../models/user-google.models';
-import { WebsocketService } from '../../services/websocket.service';
+import { WebsocketService } from '../../services/websocket/websocket.service';
 
 @Component({
   selector: 'app-new-game',
@@ -33,14 +33,15 @@ export class NewGameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playerService.getAllPlayers().subscribe((players) => {
+      this.players = players!;
+    });
     this.WebsocketService.connect('123').subscribe({
       next: (data: any) => console.log(data),
       error: (err: any) => console.log(err),
       complete: () => console.log('complete()'),
     });
-    this.playerService.getAllPlayers().subscribe((players) => {
-      this.players = players!;
-    });
+
   }
 
   private createForm(): FormGroup {
@@ -56,9 +57,9 @@ export class NewGameComponent implements OnInit {
   }
 
   sendForm(): void {
-    this.router.navigate(['lobby']);
     console.log(this.form);
   }
+
 
   logOut(): void {
     this.authService.logOut().then(() => this.router.navigate(['login']));
@@ -79,7 +80,7 @@ export class NewGameComponent implements OnInit {
       });
   }
 
-  board() {
-    this.router.navigate(['tablero']);
+  lobby() {
+    this.router.navigate(['/game/lobby']);
   }
 }

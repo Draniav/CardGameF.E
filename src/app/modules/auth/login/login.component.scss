@@ -1,10 +1,62 @@
-body {
-   // background-image: url("src/assets/BG_clash.jpg");
-    background-color: #cccccc;
-   }
 
-header   {
-   // background-image: url("src/assets/Title_Marvel.jpg");
-    background-color: #cccccc;
-   }
+
+
+.title {
+   background-image: url("../../../../../src/assets/Title_Marvel.jpg");
+
+  background-color: #cccccc;
+}
+
+.cont {
+  flex-flow: column wrap;
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/72/532/929/comics-marvel-comics-captain-america-captain-america-civil-war-wallpaper-preview.jpg");
+ // background-image: url("../../../../../src/assets/loginBG.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.body {
+  color: #fff;
+  background: url("../../../../../src/assets/Title_Marvel.jpg");
+ // background-color: #cccccc;
+  background: #17181c;
+  font: 300 1em 'Fira Sans', sans-serif;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+  display: -webkit-box;
+  display: flex;
+}
+
+.loginBtn{
+  padding: 16px;
+  text-justify: distribute;
+  Text-align: center;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+}
+
+  .loginBtn:hover {
+
+
+    background: #2079b0;
+    background-image: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+    background-image: -moz-linear-gradient(top,rgba(255, 0, 0, 0.49), #ffffff);
+    background-image: -ms-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+    background-image: -o-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+    background-image: linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+    text-decoration: none;
+  }
+
 

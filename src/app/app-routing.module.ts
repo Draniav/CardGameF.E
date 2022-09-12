@@ -9,7 +9,7 @@ import {
   redirectLoggedInTo,
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
-import { LobbyComponent } from './modules/game/pages/lobby/lobby.component';
+import {LobbyComponent} from './modules/game/pages/lobby/lobby.component';
 
 const routes: Routes = [
   {
@@ -20,14 +20,14 @@ const routes: Routes = [
   },
 
   {
-    path: 'tablero',
+    path: 'board',
     component: TableroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
     pathMatch: 'full',
   },
 
   {
-    path: 'game/score',
+    path: 'game/lobby',
     component: LobbyComponent,
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
     pathMatch: 'full',
@@ -51,7 +51,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
-
 
 
 ];

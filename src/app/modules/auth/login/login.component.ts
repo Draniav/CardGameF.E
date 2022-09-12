@@ -28,6 +28,6 @@ export class LoginComponent implements OnInit {
     this.authService
       .loginWithGoogle()
       .then(() => this.router.navigate(['/game/new']))
-      .then(() => console.log('Hola mundo'));
+
   }
 }

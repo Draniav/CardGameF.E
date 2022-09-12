@@ -1,6 +1,6 @@
-<title>
-  <h1>Marvel Card Game</h1>
-</title>
+<div    class="form-group">
+<h1>Pick the players</h1>
+
 
 <body>
 
@@ -26,9 +26,11 @@
 
   <p>
   </p>
-  <button [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
 
-  <button class="logOutBtn" (click)="logOut()"> LogOut</button>
-  <button [disabled]="form.invalid" type="submit" (click)="board()">ir a tablero</button>
+    <button class="button"[disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
+    <button class="button" (click)="logOut()"> LogOut</button>
+    <button class="button" [disabled]="form.invalid"   (click)="lobby()">ir al Lobby</button>
+
 </form>
 </body>
+</div>

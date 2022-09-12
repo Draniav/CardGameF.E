@@ -17,12 +17,14 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AuthModule } from './modules/auth/auth.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     TableroComponent,
     NewGameComponent,
     LobbyComponent,
+
   ],
   imports: [
     BrowserModule,
