@@ -1,12 +1,10 @@
-
-
 <div class="form-group">
   <h1>Pick the players</h1>
 
 
   <body>
 
-  <form [formGroup]="form" >
+  <form [formGroup]="form">
 
 
     <select class="PlayerList"
@@ -32,12 +30,13 @@
     </p>
 
     <button class="button" [disabled]="form.invalid" (click)="submit(this)" type="submit">New game</button>
-    <button class="button" (click)="logOut()"> LogOut</button>
-
+    <!--
+         <button class="button" (click)="logOut()"> LogOut</button>
+         -->
 
   </form>
   </body>
-  <h2> <label  *ngIf="form.invalid && form.touched" >{{
+  <h2><label *ngIf="form.invalid && form.touched">{{
     form.get("players")?.getError("minRequired")
     }}</label>
   </h2>

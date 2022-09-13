@@ -1,16 +1,11 @@
 
 
 
-.title {
-   background-image: url("../../../../../src/assets/Title_Marvel.jpg");
-
-  background-color: #cccccc;
-}
-
 .cont {
+  border: 2px solid;
   flex-flow: column wrap;
-  background-image: url("https://c4.wallpaperflare.com/wallpaper/72/532/929/comics-marvel-comics-captain-america-captain-america-civil-war-wallpaper-preview.jpg");
- // background-image: url("../../../../../src/assets/loginBG.jpg");
+  //background-image: url("https://epostalnews.com/wallpaper/wallpaper/20220526/marvel-wallpapers-pictures-images-preview.webp");
+  background-image: url("../../../../../src/assets/BG_collage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;

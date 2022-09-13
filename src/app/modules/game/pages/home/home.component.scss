@@ -1,0 +1,74 @@
+.HomeGroup{
+  background-image: url("../../../../../assets/BG_retro.jpeg");
+  background-color: rgba(255, 0, 0, 0.49);
+  width: 100%;
+  // height: 100%;
+  border: 2px solid;
+  align: center;
+  opacity: 0.9;
+}
+
+.title {
+
+  background-color: gray;
+  width: 100%;
+ // height: 100%;
+  border: 2px solid;
+  align: center;
+ // opacity: 0.7;
+}
+
+.cont {
+  border: 2px solid;
+  flex-flow: column wrap;
+  //background-image: url("https://epostalnews.com/wallpaper/wallpaper/20220526/marvel-wallpapers-pictures-images-preview.webp");
+  background-image: url("../../../../../assets/BG_Home4.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.body {
+  color: #fff;
+  //background: url("../../../../../src/assets/Title_Marvel.jpg");
+  // background-color: #cccccc;
+  background: #17181c;
+  font: 300 1em 'Fira Sans', sans-serif;
+  -webkit-box-pack: center;
+  justify-content: center;
+  align-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  text-align: center;
+  min-height: 20vh;
+  display: -webkit-box;
+  display: flex;
+}
+
+.button {
+  padding: 16px;
+  text-justify: distribute;
+  Text-align: center;
+  border: 2px solid;
+  font: inherit;
+  line-height: 1;
+  margin: 0.5em;
+}
+
+.button:hover {
+
+
+  background: #2079b0;
+  background-image: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+  background-image: -moz-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+  background-image: -ms-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+  background-image: -o-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+  background-image: linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
+  text-decoration: none;
+}
+
+
