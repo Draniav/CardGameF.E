@@ -15,6 +15,7 @@ export class AuthService {
   loginWithGoogle() {
     return signInWithPopup(this.authentication, new GoogleAuthProvider());
   }
+
   logOut() {
     return signOut(this.authentication);
   }

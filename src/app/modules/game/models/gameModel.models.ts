@@ -1,5 +1,3 @@
-//import {PlayerModel} from "./playerModel";
-
 import { PlayerModel } from "./playerModel";
 
 export interface GameDataModel {
@@ -9,5 +7,6 @@ export interface GameDataModel {
   ended: boolean;
   numberOfPlayers: number;
   winner: null;
+
   players: {[key: string] : PlayerModel   };
 }

@@ -8,7 +8,7 @@
       <li class="option_game" *ngFor="let game of dataGames; let i = index" (click)="goToGame(game.id)">
         <p class="option_game-title">Juego {{i+1}}</p>
         <p>Cantidad de jugadores {{game.cantidadJugadores}}</p>
-        <p class="created_by">Creado por {{getHostingName(game)}}</p>
+
       </li>
 
     </ul>
@@ -16,31 +16,6 @@
 
   </div>
 
-
-  <body>
-
-  <form [formGroup]="form" (submit)="sendForm()">
-
-
-    <select formControlName="games"
-            multiple
-            title="Games list"
-            name="games"
-            id="2">
-
-      <option *ngFor="let p of dataGames" [value]="p.uid">{{p.displayName}}</option>
-    </select>
-
-    <p>
-
-
-    </p>
-
-
-    <button class="button" [disabled]="form.invalid"   (click)="board()">ir al tablero</button>
-
-  </form>
-  </body>
 
 
 

@@ -1,19 +1,21 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   addDoc,
   collection,
   collectionData,
   CollectionReference,
   doc,
-  Firestore,
+  Firestore, setDoc,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
+import {Auth, getAuth} from '@angular/fire/auth';
 
 //Models
 
-import { HttpClient } from '@angular/common/http';
-import { PlayerModel } from '../../models/playerModel';
-import { UserGoogle } from '../../models/user-google.models';
+import {HttpClient} from '@angular/common/http';
+import {PlayerModel} from '../../models/playerModel';
+import {UserGoogle} from '../../models/user-google.models';
+
 
 @Injectable({
   providedIn: 'root',
@@ -21,49 +23,43 @@ import { UserGoogle } from '../../models/user-google.models';
 export class PlayerService {
   playerRef: CollectionReference = collection(this.firestore, 'users');
 
-  constructor(private firestore: Firestore, private http: HttpClient) {}
+  constructor(private firestore: Firestore, private http: HttpClient, private auth: Auth) {
+  }
+
 
   addUser(user: UserGoogle) {
     const userRef = collection(this.firestore, 'users');
     return addDoc(userRef, user);
   }
 
-  getAllPlayers(): Observable<UserGoogle[]> {
+  newUser() {
+    const DataBaseRef = collection(this.firestore, 'users')
+    const user = getAuth().currentUser;
+    const userRef = doc(DataBaseRef, user?.uid)
+    console.log(user);
+    return setDoc(userRef, {
+      uid: user?.uid,
+      displayName: user?.displayName,
+      email: user?.email,
+      photoURL: user?.photoURL
+    })
+
+  }
+
+  getAllPlayers():
+    Observable<UserGoogle[]> {
     const userRef = collection(this.firestore, 'users');
-    return collectionData(userRef, { idField: 'id' }) as Observable<
-      UserGoogle[]
-    >;
+    return collectionData(userRef, {idField: 'id'}) as Observable<UserGoogle[]>;
   }
 
-  public createGame(body: any) {
-    return this.http.post('http://localhost:8081/juego/crear/', { ...body });
+  listar(): Observable<UserGoogle[]> {
+    const dataBaseRef = collection(this.firestore, 'users')
+    return collectionData(dataBaseRef, {idField: 'id'}) as Observable<UserGoogle[]>;
+
   }
 
-  getPlayers(): Array<PlayerModel> {
-    //const players = new Array<PlayerModel>();
-    const players = [];
-    players.push({
-      name: 'Camilo',
-      uid: '123',
-    });
-    players.push({
-      name: 'Luisa',
-      uid: '321',
-    });
-    players.push({
-      name: 'Sebastian',
-      uid: '456',
-    });
-    players.push({
-      name: 'Jorge',
-      uid: '789',
-    });
-    players.push({
-      name: 'Alexander',
-      uid: '888',
-    });
-
-    return players;
+  createGame(body: any) {
+    return this.http.post('http://localhost:8080/juego/crear/', {...body});
   }
 
 

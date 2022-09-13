@@ -1,18 +1,33 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {webSocket, WebSocketSubject} from 'rxjs/webSocket';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class WebsocketService {
   private socket!: WebSocketSubject<unknown>;
+  private URL_WebSocket: String = "ws://localhost:8081/retrieve";
+  private URL_HTTP: String = "http://localhost:8080";
 
-  constructor(private client: HttpClient) {}
+
+
+  constructor(private client: HttpClient) {
+  }
 
   connect(idGame: string) {
     this.socket = webSocket(`ws://localhost:8081/retrieve/${idGame}`);
     return this.socket;
+  }
+
+  start(idGame: string): WebSocketSubject<unknown> {
+    this.socket = webSocket(`${this.URL_WebSocket}/${idGame}`);
+    return this.socket;
+  }
+
+  getGames(): Observable<object> {
+    return this.client.get(`${this.URL_HTTP}/juegos/`);
   }
 
   disconnect() {
@@ -21,6 +36,21 @@ export class WebsocketService {
   }
 
   crearjuego(body: {}) {
-    return this.client.post('http://localhost:8080/juego/crear/', {...body});
+    return this.client.post('http://localhost:8080/juego/crear/', {
+      ...body =
+        {
+          "juegoId": "456",
+          "jugadores": {
+            "uid:ccc": "raul",
+            "uid:kkk": "andres"
+          },
+          "jugadorPrincipalId": "jugador Principal"
+        }
+    });
+
   }
+
+
+
+
 }

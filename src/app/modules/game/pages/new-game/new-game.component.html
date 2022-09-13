@@ -1,36 +1,43 @@
-<div    class="form-group">
-<h1>Pick the players</h1>
+<div class="form-group">
+  <h1>Pick the players</h1>
 
 
-<body>
+  <body>
 
-<form [formGroup]="form" (submit)="sendForm()">
+  <form [formGroup]="form" (submit)="sendForm()">
 
 
-  <select formControlName="players"
-          multiple
-          title="Players list"
-          name="players"
-          id="3">
+    <select class="PlayerList"
+            formControlName="players"
+            multiple
+            title="Players list"
+            name="players"
+            id="3">
 
-    <option *ngFor="let p of players" [value]="p.uid">{{p.displayName}}</option>
-  </select>
+      <option *ngFor="let p of players" [value]="p.uid">
+        <div>
+          {{p.displayName}}
+        </div>
 
-  <p>
+      </option>
+    </select>
 
-  </p>
+    <p>
+    </p>
 
-  <label *ngIf="form.invalid && form.touched">{{
+
+
+    <p>
+    </p>
+
+    <button class="button" [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
+    <button class="button" (click)="logOut()"> LogOut</button>
+    <button class="button" [disabled]="form.invalid" (click)="lobby()">ir al Lobby</button>
+
+  </form>
+  </body>
+  <h2> <label  color="yellow" *ngIf="form.invalid && form.touched" >{{
     form.get("players")?.getError("minRequired")
     }}</label>
-
-  <p>
-  </p>
-
-    <button class="button"[disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
-    <button class="button" (click)="logOut()"> LogOut</button>
-    <button class="button" [disabled]="form.invalid"   (click)="lobby()">ir al Lobby</button>
-
-</form>
-</body>
+  </h2>
 </div>

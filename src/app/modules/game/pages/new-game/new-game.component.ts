@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PlayerService } from '../../services/player/player.service';
+import {Component, OnInit} from '@angular/core';
+import {PlayerService} from '../../services/player/player.service';
 import {
   AbstractControl,
   FormControl,
@@ -7,10 +7,10 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../../services/auth/auth.service';
-import { Router } from '@angular/router';
-import { UserGoogle } from '../../models/user-google.models';
-import { WebsocketService } from '../../services/websocket/websocket.service';
+import {AuthService} from '../../services/auth/auth.service';
+import {Router} from '@angular/router';
+import {UserGoogle} from '../../models/user-google.models';
+import {WebsocketService} from '../../services/websocket/websocket.service';
 
 @Component({
   selector: 'app-new-game',
@@ -33,14 +33,18 @@ export class NewGameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playerService.getAllPlayers().subscribe((players) => {
-      this.players = players!;
-    });
-    this.WebsocketService.connect('123').subscribe({
-      next: (data: any) => console.log(data),
-      error: (err: any) => console.log(err),
-      complete: () => console.log('complete()'),
-    });
+
+      this.playerService.listar().subscribe({
+      next: (res) => this.players = res,
+      error: (err) => console.log(err)
+
+    })
+
+    //  this.WebsocketService.connect('123').subscribe({
+    //    next: (data: any) => console.log(data),
+    //   error: (err: any) => console.log(err),
+    //    complete: () => console.log('complete()'),
+    // });
 
   }
 
@@ -52,7 +56,7 @@ export class NewGameComponent implements OnInit {
 
   private Playersrequired(control: AbstractControl): ValidationErrors | null {
     return control.value.length < 2
-      ? { minRequired: 'You  must select at least 2 players' }
+      ? {minRequired: 'You  must select at least 2 players'}
       : null;
   }
 

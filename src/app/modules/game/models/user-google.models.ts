@@ -1,6 +1,8 @@
 export interface UserGoogle {
+
   uid: string;
+  displayName: string;
   email: string;
-  displayName?: string;
-  photoURL?: string;
+  photoURL: string;
+
 }
