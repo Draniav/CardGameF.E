@@ -41,7 +41,6 @@ export class NewGameComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
 
     this.client.connect(this.uuid).subscribe(console.log);
@@ -106,4 +105,7 @@ export class NewGameComponent implements OnInit {
   }
 
 
+  goHome() {
+    this.router.navigate(['/game/home']);
+  }
 }

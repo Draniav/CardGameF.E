@@ -39,6 +39,11 @@ export class LobbyComponent implements OnInit {
   }
 
 
+  goHome() {
+    this.router.navigate(['game/home/']);
+  }
 
-
+  goLobby() {
+    this.router.navigate(['game/lobby/']);
+  }
 }
