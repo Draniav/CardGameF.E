@@ -6,13 +6,13 @@
     <ul name="games_availables" id="games_availables">
 
       <li class="option_game" *ngFor="let game of dataGames; let i = index" (click)="goToGame(game.id)">
-        <p class="option_game-title">Juego {{i+1}}</p>
-        <p>Cantidad de jugadores {{game.cantidadJugadores}}</p>
+        <p class="option_game-title">Arena {{i+1}}</p>
+        <p>{{game.cantidadJugadores}} Players</p>
 
       </li>
 
     </ul>
-    <span class="info">Selecciona una juego para iniciar</span>
+    <span class="info">Select the Arena to  Begin</span>
 
   </div>
 

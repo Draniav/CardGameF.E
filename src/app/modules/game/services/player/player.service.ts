@@ -13,24 +13,16 @@ import {Auth, getAuth} from '@angular/fire/auth';
 //Models
 
 import {HttpClient} from '@angular/common/http';
-import {PlayerModel} from '../../models/playerModel';
-import {UserGoogle} from '../../models/user-google.models';
+import {Player} from '../../models/user-google.models';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  playerRef: CollectionReference = collection(this.firestore, 'users');
-
   constructor(private firestore: Firestore, private http: HttpClient, private auth: Auth) {
   }
 
-
-  addUser(user: UserGoogle) {
-    const userRef = collection(this.firestore, 'users');
-    return addDoc(userRef, user);
-  }
 
   newUser() {
     const DataBaseRef = collection(this.firestore, 'users')
@@ -47,20 +39,12 @@ export class PlayerService {
   }
 
   getAllPlayers():
-    Observable<UserGoogle[]> {
+    Observable<Player[]> {
     const userRef = collection(this.firestore, 'users');
-    return collectionData(userRef, {idField: 'id'}) as Observable<UserGoogle[]>;
+    return collectionData(userRef, {idField: 'id'}) as Observable<Player[]>;
   }
 
-  listar(): Observable<UserGoogle[]> {
-    const dataBaseRef = collection(this.firestore, 'users')
-    return collectionData(dataBaseRef, {idField: 'id'}) as Observable<UserGoogle[]>;
 
-  }
-
-  createGame(body: any): Observable<object>{
-    return this.http.post('http://localhost:8080/juego/crear', {...body});
-  }
 
 
 }

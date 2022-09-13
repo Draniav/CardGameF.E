@@ -9,8 +9,7 @@ import {Observable} from "rxjs";
 export class WebsocketService {
   private socket!: WebSocketSubject<unknown>;
   private URL_WebSocket: String = "ws://localhost:8081/retrieve";
-  private URL_HTTP: String = "http://localhost:8080";
-
+  private URL: String = "http://localhost:8080";
 
 
   constructor(private client: HttpClient) {
@@ -27,7 +26,7 @@ export class WebsocketService {
   }
 
   getGames(): Observable<object> {
-    return this.client.get(`${this.URL_HTTP}/juegos/`);
+    return this.client.get(`${this.URL}/juegos/`);
   }
 
   disconnect() {
@@ -35,10 +34,7 @@ export class WebsocketService {
     //  this.socket.complete();
   }
 
-  crearjuego(body: {}) {
-    return this.client.post('http://localhost:8080/juego/crear', {...body });
 
-  }
 
 
 

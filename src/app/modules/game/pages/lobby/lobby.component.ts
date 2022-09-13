@@ -2,10 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 
-import {PlayerModel} from "../../models/playerModel";
-import {GameDataModel} from "../../models/gameModel.models";
-
-
 import {GameService} from "../../services/game/game-service.service";
 import {WebsocketService} from "../../services/websocket/websocket.service";
 
@@ -38,14 +34,11 @@ export class LobbyComponent implements OnInit {
   }
 
   goToGame(idGame: string): void {
-    this.router.navigate(['/board/']);
+    this.router.navigate(['game/board/']);
 
   }
 
 
-  board() {
-    this.router.navigate(['/board'])
-  }
 
 
 }

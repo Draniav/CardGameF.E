@@ -1,12 +1,12 @@
 
-<!--   tu comentario
+
 <div class="form-group">
   <h1>Pick the players</h1>
 
 
   <body>
 
-  <form [formGroup]="form" (submit)="sendForm()">
+  <form [formGroup]="form" >
 
 
     <select class="PlayerList"
@@ -31,7 +31,7 @@
     <p>
     </p>
 
-    <button class="button" [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
+    <button class="button" [disabled]="form.invalid" (click)="submit(this)" type="submit">New game</button>
     <button class="button" (click)="logOut()"> LogOut</button>
 
 
@@ -42,6 +42,6 @@
     }}</label>
   </h2>
 </div>
--->
+
 
 

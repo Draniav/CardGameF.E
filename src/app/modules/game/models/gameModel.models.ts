@@ -1,6 +1,6 @@
-import { PlayerModel } from "./playerModel";
 
-export interface GameDataModel {
+
+export interface GameModel {
 
   uid: string;
   initialized: boolean;
@@ -8,5 +8,5 @@ export interface GameDataModel {
   numberOfPlayers: number;
   winner: null;
 
-  players: {[key: string] : PlayerModel   };
+  players:{ [key: string]: {} };
 }

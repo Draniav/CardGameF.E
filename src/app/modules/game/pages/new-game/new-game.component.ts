@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {PlayerService} from '../../services/player/player.service';
 import {
   AbstractControl,
@@ -9,60 +9,59 @@ import {
 } from '@angular/forms';
 import {AuthService} from '../../services/auth/auth.service';
 import {Router} from '@angular/router';
-import {UserGoogle} from '../../models/user-google.models';
+import {Player} from '../../models/user-google.models';
 import {WebsocketService} from '../../services/websocket/websocket.service';
-
+// @ts-ignore
+import {v4 as uuidv4} from 'uuid';
+import {User as CurrentUser, User} from '@angular/fire/auth';
+import {GameService} from "../../services/game/game-service.service";
+import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-new-game',
   templateUrl: './new-game.component.html',
   styleUrls: ['./new-game.component.scss'],
 })
 export class NewGameComponent implements OnInit {
-  players: UserGoogle[] | undefined;
+  players: Player[] = [];
   form = new FormGroup({});
-  WebsocketService: any;
+  playersSubscription!: Subscription;
+  uuid: string;
+
 
   constructor(
     private playerService: PlayerService,
     private authService: AuthService,
     private router: Router,
-    private client: WebsocketService
+    private client: WebsocketService,
+    private gameService: GameService
   ) {
     this.players = [];
     this.form = this.createForm();
+    this.uuid = uuidv4();
   }
+
+
 
   ngOnInit(): void {
 
-      this.playerService.listar().subscribe({
+    this.client.connect(this.uuid).subscribe(console.log);
+    this.playerService.getAllPlayers().subscribe({
       next: (res) => this.players = res,
       error: (err) => console.log(err)
-
     })
-
-    //  this.WebsocketService.connect('123').subscribe({
-    //    next: (data: any) => console.log(data),
-    //   error: (err: any) => console.log(err),
-    //    complete: () => console.log('complete()'),
-    // });
 
   }
 
   private createForm(): FormGroup {
     return new FormGroup({
-      players: new FormControl('', [Validators.required, this.Playersrequired]),
+      players: new FormControl('', [Validators.required, this.PlayersRequired]),
     });
   }
 
-  private Playersrequired(control: AbstractControl): ValidationErrors | null {
+  private PlayersRequired(control: AbstractControl): ValidationErrors | null {
     return control.value.length < 2
       ? {minRequired: 'You  must select at least 2 players'}
       : null;
-  }
-
-  sendForm(): void {
-    console.log(this.form);
   }
 
 
@@ -74,20 +73,36 @@ export class NewGameComponent implements OnInit {
     this.router.navigate(['/game/lobby']);
   }
 
-  submit() {
-    this.playerService
-      .createGame(   {
-        "juegoId": "34455",
-        "jugadores": {
-          "uid:002": "omar",
-          "uid:001": "martin",
-          "uid:003": "camilo"
-        },
-        "jugadorPrincipalId": "uid:003"
+  submit(data: any) {
+    const {players: formPlayers} = data;
+    const playersToSend = this.generatePlayersCommand(formPlayers);
+    this.gameService
+      .createGame({
+        juegoId: this.uuid,
+        jugadores: playersToSend,
+        jugadorPrincipalId: formPlayers[0].uid,
       })
-      .subscribe((suscribe) => {
-        console.log("uego creado");
+
+      .subscribe({
+        next: console.log,
+        error: console.error,
+        complete: () => {
+          this.router.navigate(['/game/lobby'], {
+            queryParams: {mainPlayerId: this.uuid},
+          });
+        },
       });
+  }
+
+
+  private generatePlayersCommand(players: User[]) {
+    return players.reduce((previousValue, currentValue) => {
+        return {
+          ...previousValue,
+          [currentValue.uid]: currentValue.displayName
+        };
+      },
+      {});
   }
 
 
