@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     this.authService
       .loginWithGoogle()
       .then(() => {this.playerService.newUser();})
-      .then(() => this.router.navigate(['/game/new']))
+      .then(() => this.router.navigate(['/game/home']))
 
   }
 }

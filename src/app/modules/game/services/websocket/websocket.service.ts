@@ -36,17 +36,7 @@ export class WebsocketService {
   }
 
   crearjuego(body: {}) {
-    return this.client.post('http://localhost:8080/juego/crear/', {
-      ...body =
-        {
-          "juegoId": "456",
-          "jugadores": {
-            "uid:ccc": "raul",
-            "uid:kkk": "andres"
-          },
-          "jugadorPrincipalId": "jugador Principal"
-        }
-    });
+    return this.client.post('http://localhost:8080/juego/crear', {...body });
 
   }
 

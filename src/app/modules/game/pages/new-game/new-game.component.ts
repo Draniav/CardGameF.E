@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {UserGoogle} from '../../models/user-google.models';
 import {WebsocketService} from '../../services/websocket/websocket.service';
 
+
 @Component({
   selector: 'app-new-game',
   templateUrl: './new-game.component.html',
@@ -69,22 +70,25 @@ export class NewGameComponent implements OnInit {
     this.authService.logOut().then(() => this.router.navigate(['login']));
   }
 
-  submit() {
-    this.playerService
-      .createGame({
-        juegoId: '12345',
-        jugadores: {
-          'uid-001': 'camilo',
-          'uid-002': 'andres',
-        },
-        jugadorPrincipal: 'uid-001',
-      })
-      .subscribe((suscribe) => {
-        console.log(suscribe);
-      });
-  }
-
   lobby() {
     this.router.navigate(['/game/lobby']);
   }
+
+  submit() {
+    this.playerService
+      .createGame(   {
+        "juegoId": "34455",
+        "jugadores": {
+          "uid:002": "omar",
+          "uid:001": "martin",
+          "uid:003": "camilo"
+        },
+        "jugadorPrincipalId": "uid:003"
+      })
+      .subscribe((suscribe) => {
+        console.log("uego creado");
+      });
+  }
+
+
 }

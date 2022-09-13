@@ -1,3 +1,5 @@
+
+<!--   tu comentario
 <div class="form-group">
   <h1>Pick the players</h1>
 
@@ -26,18 +28,20 @@
     </p>
 
 
-
     <p>
     </p>
 
     <button class="button" [disabled]="form.invalid" type="submit" (click)="submit()">New game</button>
     <button class="button" (click)="logOut()"> LogOut</button>
-    <button class="button" [disabled]="form.invalid" (click)="lobby()">ir al Lobby</button>
+
 
   </form>
   </body>
-  <h2> <label  color="yellow" *ngIf="form.invalid && form.touched" >{{
+  <h2> <label  *ngIf="form.invalid && form.touched" >{{
     form.get("players")?.getError("minRequired")
     }}</label>
   </h2>
 </div>
+-->
+
+

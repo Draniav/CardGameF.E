@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AuthModule } from './modules/auth/auth.module';
+import { HomeComponent } from './modules/game/pages/home/home.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { AuthModule } from './modules/auth/auth.module';
     TableroComponent,
     NewGameComponent,
     LobbyComponent,
+    HomeComponent,
 
   ],
   imports: [

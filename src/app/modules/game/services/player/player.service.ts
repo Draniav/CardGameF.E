@@ -58,8 +58,8 @@ export class PlayerService {
 
   }
 
-  createGame(body: any) {
-    return this.http.post('http://localhost:8080/juego/crear/', {...body});
+  createGame(body: any): Observable<object>{
+    return this.http.post('http://localhost:8080/juego/crear', {...body});
   }
 
 

@@ -10,8 +10,21 @@ import {
   redirectUnauthorizedTo,
 } from '@angular/fire/auth-guard';
 import {LobbyComponent} from './modules/game/pages/lobby/lobby.component';
+import { HomeComponent } from './modules/game/pages/home/home.component';
 
 const routes: Routes = [
+
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: '',
+    redirectTo: 'game/login',
+    pathMatch: 'full',
+  },
+
   {
     path: 'game/new',
     component: NewGameComponent,
@@ -20,7 +33,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'board',
+    path: 'game/board',
     component: TableroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
     pathMatch: 'full',
@@ -32,6 +45,12 @@ const routes: Routes = [
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
     pathMatch: 'full',
   },
+  {
+    path: 'game/home',
+    component: HomeComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
+    pathMatch: 'full',
+  },
 
   //{
   //path: 'game/login',
@@ -40,17 +59,9 @@ const routes: Routes = [
   //  pathMatch: 'full',
   //},
 
-  {
-    path: '',
-    redirectTo: 'game/login',
-    pathMatch: 'full',
-  },
 
-  {
-    path: 'login',
-    loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  },
+
+
 
 
 ];
