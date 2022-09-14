@@ -15,7 +15,7 @@ import {WebsocketService} from '../../services/websocket/websocket.service';
 import {v4 as uuidv4} from 'uuid';
 import {User as CurrentUser, User} from '@angular/fire/auth';
 import {GameService} from "../../services/game/game-service.service";
-import {Subscription} from "rxjs";
+import {delay, Subscription} from "rxjs";
 
 @Component({
   templateUrl: './new-game.component.html',
@@ -86,6 +86,7 @@ export class NewGameComponent implements OnInit {
         next: console.log,
         error: console.error,
         complete: () => {
+          delay(1000)
           this.router.navigate(['/game/lobby'], {
             queryParams: {mainPlayerId: this.uuid},
           });
