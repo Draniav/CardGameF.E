@@ -37,8 +37,8 @@ export class NewGameComponent implements OnInit {
   ) {
     this.players = [];
     this.form = this.createForm();
-   // this.uuid = uuidv4();
-    this.uuid = "123";
+    this.uuid = uuidv4();
+   // this.uuid = "123";
   }
 
 
