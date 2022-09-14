@@ -35,7 +35,7 @@ body {
   color: red;
 }
 
-.cont{
+.container{
   background: url("../../../../../assets/BG_clash.jpg");
 }
 .button{
@@ -46,12 +46,13 @@ body {
   font: inherit;
   line-height: 1;
   margin: 0.5em;
+  border-radius: 8px;
 }
 
 .button:hover {
 
 
-  background: rgba(255, 0, 0, 0.49);
+  background: rgb(62, 139, 255);
   background-image: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
   background-image: -moz-linear-gradient(top,rgba(255, 0, 0, 0.49), #ffffff);
   background-image: -ms-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);

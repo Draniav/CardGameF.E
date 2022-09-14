@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 
 import {GameService} from "../../services/game/game-service.service";
 import {WebsocketService} from "../../services/websocket/websocket.service";
+import {AuthService} from "../../services/auth/auth.service";
 
 
 @Component({
@@ -17,12 +18,14 @@ export class LobbyComponent implements OnInit {
   constructor(
     private router: Router,
     private gameService$: GameService,
-    private ws$: WebsocketService
+    private ws$: WebsocketService,
+    private auths$: AuthService,
+
   ) {
   }
 
   ngOnInit(): void {
-    this.ws$.getGames().subscribe({
+    this.gameService$.getGames().subscribe({
       next: (response) => {
         this.dataGames = response;
         console.log(response);

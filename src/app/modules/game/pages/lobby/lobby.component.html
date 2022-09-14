@@ -1,26 +1,30 @@
 <div class="container">
 
-
+  <button class="button" (click)="goHome()"> Home</button>
   <div class="background"></div>
   <div class="container_body">
-    <span class="title"> Games Available</span>
+    <H1 align="center"><span class="title"> Games Available</span></H1>
+    <H2><span class="info">Select the Arena to  Begin</span></H2>
 
-    <ul name="games_availables" id="games_availables">
+    <div class="arenas">
 
-      <li class="option_game" *ngFor="let game of dataGames; let i = index" (click)="goToGame(game.id)">
-        <p class="option_game-title">Arena {{i+1}}</p>
-        <p>{{game.cantidadJugadores}} Players</p>
 
-      </li>
+      <ul name="AvailableArenas" id="AvailableArenas">
 
-    </ul>
-    <span class="info">Select the Arena to  Begin</span>
+        <li class="option_game" *ngFor="let game of dataGames; let i = index" (click)="goToGame(game.id)">
+          <p class="option_game-title">Arena {{i + 1}}</p>
+          <p>{{game.cantidadJugadores}} Players</p>
+          <p> Initialized {{game.iniciado}} </p>
+          <p> id: {{game.id}}</p>
+
+        </li>
+
+      </ul>
+
+
+    </div>
+
 
   </div>
 
-  <button class="button" (click)="goHome()"> Home </button>
-
-
 </div>
-
-

@@ -8,8 +8,8 @@ import {
   Firestore, setDoc,
 } from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {Auth, getAuth} from '@angular/fire/auth';
-
+import { getAuth} from '@angular/fire/auth';
+import {Auth, User as CurrentUser} from '@angular/fire/auth';
 //Models
 
 import {HttpClient} from '@angular/common/http';
@@ -44,7 +44,9 @@ export class PlayerService {
     return collectionData(userRef, {idField: 'id'}) as Observable<Player[]>;
   }
 
-
+  getCurrentUser(): CurrentUser | null {
+    return this.auth.currentUser;
+  }
 
 
 }

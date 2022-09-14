@@ -1,28 +1,43 @@
+<div class="container">
 
-<div class="header">
-  <h2>Tablero</h2>
-</div>
+  <div class="cont-info">
+    <p>Ronda </p>
+    <p>Jugadores </p>
+  </div>
 
-<div class="flex align-content-end justify-content-center container">
-  <div>
-    <div>Carta 1</div>
-    <div>Carta 2</div>
-    <div>Carta 3</div>
-    <div>Carta 4</div>
-    <div>Carta 5</div>
+  <div class="cont-estado">
+    <p class="tiempo">Tiempo:</p><p></p>
+    <button   class="btn">INICIAR</button>
+  </div>
+
+  <div class="cont-stick">
+
   </div>
 </div>
 
+<div class="dashboard">
 
-<div class="banner">
+  <div class="dashboard-card">
+    <p>Partida</p>
+    <div class="cards">
+      <div ngFor="let card of cartasDelTablero" class="card">
+        <img class="img-card" alt="img" />
+      </div>
+    </div>
+  </div>
 
-  <img src="./assets/Banner_Marvel.jpeg" width=100%, height=100%  alt="banner"  >
+  <div class="dashboard-mazo">
+    <p>Mazo</p>
+    <div class="cards-mazo">
+      <div  class="card-mazo">
+      <button  class="btn-poner">PONER</button>
+      <img class="img-card" alt="img"  />
+      <div class="poder"><p>Poder:</p><p class="power"></p></div>
+    </div>
+  </div>
+</div>
 
 </div>
-<div class="header">
-<button type="button" class="btnLogOut" onclick="logOut()"> <span>Log out</span></button>
-</div>
-
 
 
 

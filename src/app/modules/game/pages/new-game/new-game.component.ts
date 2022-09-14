@@ -37,7 +37,8 @@ export class NewGameComponent implements OnInit {
   ) {
     this.players = [];
     this.form = this.createForm();
-    this.uuid = uuidv4();
+   // this.uuid = uuidv4();
+    this.uuid = "123";
   }
 
 
@@ -72,7 +73,7 @@ export class NewGameComponent implements OnInit {
     this.router.navigate(['/game/lobby']);
   }
 
-  submit(data: any) {
+ async submit(data: any) {
     const {players: formPlayers} = data;
     const playersToSend = this.generatePlayersCommand(formPlayers);
     this.gameService
@@ -81,7 +82,6 @@ export class NewGameComponent implements OnInit {
         jugadores: playersToSend,
         jugadorPrincipalId: formPlayers[0].uid,
       })
-
       .subscribe({
         next: console.log,
         error: console.error,

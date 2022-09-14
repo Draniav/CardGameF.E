@@ -17,6 +17,9 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AuthModule } from './modules/auth/auth.module';
 import { HomeComponent } from './modules/game/pages/home/home.component';
+import {DragDropModule} from "@angular/cdk/drag-drop";
+
+
 
 
 @NgModule({
@@ -28,16 +31,17 @@ import { HomeComponent } from './modules/game/pages/home/home.component';
     HomeComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    AuthModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        AuthModule,
+        DragDropModule,
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })
