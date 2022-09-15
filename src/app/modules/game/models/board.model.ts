@@ -1,8 +1,11 @@
+import {Card} from "./card.model";
+
 export interface Board {
-  ronda: Round;
-  cantidadJugadores: number;
+  id:String;
   jugadoresIniciales: string[];
-  jugadorPrincipalId: String
+  cantidadJugadores: number;
+  estaIniciada: boolean;
+  cartas:Card
 }
 
 export interface Round {
@@ -10,4 +13,11 @@ export interface Round {
   jugadores: string[];
   numero: string;
   estaIniciada: boolean;
+ }
+
+export interface AllBoard {
+  tablero: Board;
+  ronda: Round;
+  tiempo: string;
+
 }

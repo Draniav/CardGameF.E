@@ -15,24 +15,21 @@ export class WebsocketService {
   constructor(private client: HttpClient) {
   }
 
-  connect(idGame: string) {
-    this.socket = webSocket(`ws://localhost:8081/retrieve/${idGame}`);
-    return this.socket;
-  }
 
-  start(idGame: string): WebSocketSubject<unknown> {
+  connect(idGame: string): WebSocketSubject<unknown> {
     this.socket = webSocket(`${this.URL_WebSocket}/${idGame}`);
     return this.socket;
+  }
+  disconnect() {
+    this.socket.unsubscribe();
+    //  this.socket.complete();
   }
 
   getGames(): Observable<object> {
     return this.client.get(`${this.URL}/juegos/`);
   }
 
-  disconnect() {
-    this.socket.unsubscribe();
-    //  this.socket.complete();
-  }
+
 
 
 

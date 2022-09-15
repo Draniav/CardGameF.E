@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GameModel} from "../../models/gameModel.models";
 import {Deck} from "../../models/deck.model";
-import {Board} from "../../models/board.model";
+import {AllBoard, Board} from "../../models/board.model";
 import {AuthService} from "../auth/auth.service";
 
 
@@ -33,8 +33,8 @@ export class GameService {
     return this.httpClient.get<Deck>(`${this.URL}/mazo/${playerId}/${gameId}`);
   }
 
-  getBoard(gameId: string): Observable<Board> {
-    return this.httpClient.get<Board>(`${this.URL}/tablero/${gameId}`)
+  getBoard(gameId: string): Observable<AllBoard> {
+    return this.httpClient.get<AllBoard>(`${this.URL}/juego/${gameId}`)
   }
 
 

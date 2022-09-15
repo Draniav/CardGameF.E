@@ -5,7 +5,7 @@ import {WebsocketService} from "../../services/websocket/websocket.service";
 import {GameService} from "../../services/game/game-service.service";
 import {PlayerService} from "../../services/player/player.service";
 import {Deck} from "../../models/deck.model";
-import {Board} from "../../models/board.model";
+import {Board, AllBoard} from "../../models/board.model";
 
 
 @Component({
@@ -18,6 +18,7 @@ export class TableroComponent implements OnInit {
   private userId: string;
   deck: Deck | null = null;
   board: Board | null = null;
+  boardInfo: AllBoard | null = null;
   isMainPlayer: boolean = false;
 
   constructor(
@@ -25,7 +26,6 @@ export class TableroComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private gameServices: GameService,
     private userService: PlayerService,
-   // private sweetAlertService: SweetAlertService,
     private router: Router
   ) {
     this.userId = this.userService.getCurrentUser()?.uid!;
@@ -62,11 +62,13 @@ export class TableroComponent implements OnInit {
     this.gameServices.getBoard(this.gameId).subscribe({
       next: (res) => {
         if (res) {
-          this.isMainPlayer = res.jugadorPrincipalId == this.userId;
-          this.board = res;
+        //  this.isMainPlayer = res.jugadorPrincipalId == this.userId;
+         this.boardInfo = res;
+          console.log(this.boardInfo);
+          console.log();
         } else {
          // this.sweetAlertService.errorMessage('Board not found!');
-          console.log('Board not found!');
+          console.log("board not found");
           this.router.navigate(['/game/lobby']);
         }
       },
