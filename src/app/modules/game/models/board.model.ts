@@ -18,6 +18,6 @@ export interface Round {
 export interface AllBoard {
   tablero: Board;
   ronda: Round;
-  tiempo: string;
+  tiempo: number;
 
 }

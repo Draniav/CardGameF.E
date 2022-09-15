@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {GameModel} from "../../models/gameModel.models";
 import {Deck} from "../../models/deck.model";
-import {AllBoard, Board} from "../../models/board.model";
+import {AllBoard} from "../../models/board.model";
 import {AuthService} from "../auth/auth.service";
 
 
@@ -27,10 +27,15 @@ export class GameService {
 
   startGame(body: any) {
     return this.httpClient.post(`${this.URL}/juego/iniciar`, body);
+
   }
 
-  getDeckByPlayer(playerId: string, gameId: string): Observable<Deck> {
-    return this.httpClient.get<Deck>(`${this.URL}/mazo/${playerId}/${gameId}`);
+  getDeckByPlayer(gameId: string): Observable<Deck> {
+
+  return this.httpClient.get<Deck>(`${this.URL}/jugador/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
+    // return this.httpClient.get<Deck>(`${this.URL}/juego/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
+    // return this.httpClient.get<Deck>(`${this.URL}/juego/mazo/${playerId}/${gameId}`);
+
   }
 
   getBoard(gameId: string): Observable<AllBoard> {

@@ -37,9 +37,8 @@ export class LobbyComponent implements OnInit {
   }
 
   goToGame(idGame: string): void {
-    this.router.navigate(['game/board/']);
-
-  }
+    this.router.navigate([`game/board/${idGame}`]);
+   }
 
 
   goHome() {

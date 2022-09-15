@@ -33,7 +33,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'game/board',
+    path: 'game/board/:id',
     component: TableroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['game/login'])),
     pathMatch: 'full',
