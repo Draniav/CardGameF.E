@@ -32,7 +32,7 @@ export class GameService {
 
   getDeckByPlayer(gameId: string): Observable<Deck> {
 
-  return this.httpClient.get<Deck>(`${this.URL}/jugador/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
+  return this.httpClient.get<Deck>(`${this.URL}/juego/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
    }
 
   getBoard(gameId: string): Observable<AllBoard> {
