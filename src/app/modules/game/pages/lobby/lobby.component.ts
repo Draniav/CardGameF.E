@@ -32,7 +32,9 @@ export class LobbyComponent implements OnInit {
       },
 
       error: (error) => console.log(error)
+
     });
+
 
   }
 

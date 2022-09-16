@@ -48,6 +48,7 @@ export class NewGameComponent implements OnInit {
     this.playerService.getAllPlayers().subscribe({
       next: (res) => this.players = res,
       error: (err) => console.log(err)
+
     })
 
   }
@@ -87,7 +88,8 @@ export class NewGameComponent implements OnInit {
         next: console.log,
         error: console.error,
         complete: () => {
-          delay(1000)
+          delay(10000)
+          console.log("HOLA");
           this.router.navigate(['/game/lobby'], {
             queryParams: {mainPlayerId: this.uuid},
           });

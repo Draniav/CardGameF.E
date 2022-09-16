@@ -97,15 +97,16 @@ export class TableroComponent implements OnInit {
           case 'cardgame.juegofinalizado':
             this.Winner = res.alias;
             alert(res.alias + "Wins the Arena!!!")
-            alert("Ganador del Juego: " + this.Winner)
             setTimeout(() => {
               this.router.navigate(['/game/lobby']);
             }, 500);
             break
+
           case 'cardgame.rondaterminada':
             this.rondaIniciada = false;
             this.cardsOnBoard = [];
             break
+
           case 'cardgame.cartasasignadasajugador':
 
             console.log("ronda pura", this.numeroRonda);
@@ -120,19 +121,15 @@ export class TableroComponent implements OnInit {
                   estaOculta: carta.estaOculta,
                   estaHabilitada: res.ganadorId.uuid === carta.jugador,
                   url: carta.url,
-                 // ronda: res.ganadorId.uuid === carta.jugador ? 0 : this.numeroRonda
+
                 });
 
 
-                // if(carta.poder > this.cartaGanadora[0].poder){
-                //   this.cartaGanadora[0]=carta;
-                //   console.log("carta ganadora",this.cartaGanadora)
-                // }
+
 
               });
               console.log("mazo jugador", this.cartasUser)
 
-              // alert("Ganaste la ronda!")
 
             }
             console.log(res);
