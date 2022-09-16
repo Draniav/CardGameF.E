@@ -43,4 +43,9 @@ export class GameService {
   createRound(body: any) {
     return this.httpClient.post(`${this.URL}/juego/crear/ronda`, body);
   }
+
+  putCardOnBoard(body: any) {
+    return this.httpClient.post(`${this.URL}/juego/poner`, {...body});
+  }
+
 }
