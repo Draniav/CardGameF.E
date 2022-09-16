@@ -1,4 +1,3 @@
-
 export interface Card {
     cartaId:        string;
     estaOculta:     boolean;

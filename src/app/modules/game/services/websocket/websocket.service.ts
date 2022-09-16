@@ -20,6 +20,7 @@ export class WebsocketService {
     this.socket = webSocket(`${this.URL_WebSocket}/${idGame}`);
     return this.socket;
   }
+
   disconnect() {
     this.socket.unsubscribe();
     //  this.socket.complete();

@@ -15,12 +15,12 @@ export class LobbyComponent implements OnInit {
   dataGames: any;
   form: any;
 
+
   constructor(
     private router: Router,
     private gameService$: GameService,
     private ws$: WebsocketService,
     private auths$: AuthService,
-
   ) {
   }
 
@@ -36,9 +36,7 @@ export class LobbyComponent implements OnInit {
 
   }
 
-  goToGame(idGame: string): void {
-    this.router.navigate([`game/board/${idGame}`]);
-   }
+
 
 
   goHome() {
@@ -48,4 +46,33 @@ export class LobbyComponent implements OnInit {
   goLobby() {
     this.router.navigate(['game/lobby/']);
   }
+
+
+  iniciar(gameId: string) {
+    this.ws$.connect(gameId).subscribe({
+
+      next: (event:any) => {
+
+
+        if(event.type === 'cardgame.tablerocreado'){
+          this.gameService$.createRound({
+            juegoId: gameId,
+            tiempo: 80,
+            jugadores:
+              event.jugadorIds.map
+              ((it:any) => it.uuid)
+          });
+        }
+
+        if(event.type == 'cardgame.rondacreada'){
+          this.router.navigate([`game/board/${gameId}`]);
+        }
+      },
+      error: (err:any) => console.log(err),
+      complete: () => console.log('complete')
+    });
+    this.gameService$.startGame({ juegoId: gameId }).subscribe();
+  }
+
+
 }

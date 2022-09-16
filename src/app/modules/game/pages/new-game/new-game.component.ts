@@ -81,6 +81,7 @@ export class NewGameComponent implements OnInit {
         juegoId: this.uuid,
         jugadores: playersToSend,
         jugadorPrincipalId: formPlayers[0].uid,
+
       })
       .subscribe({
         next: console.log,

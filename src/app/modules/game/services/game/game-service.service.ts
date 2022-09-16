@@ -25,6 +25,7 @@ export class GameService {
     return this.httpClient.get<GameModel[]>(`${this.URL}/juego/listar/${this.auth.getMyUser()?.uid}`);
   }
 
+  //inicia el  tablero
   startGame(body: any) {
     return this.httpClient.post(`${this.URL}/juego/iniciar`, body);
 
@@ -32,12 +33,14 @@ export class GameService {
 
   getDeckByPlayer(gameId: string): Observable<Deck> {
 
-  return this.httpClient.get<Deck>(`${this.URL}/juego/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
-   }
+    return this.httpClient.get<Deck>(`${this.URL}/juego/mazo/${this.auth.getMyUser()?.uid}/${gameId}`);
+  }
 
   getBoard(gameId: string): Observable<AllBoard> {
     return this.httpClient.get<AllBoard>(`${this.URL}/juego/${gameId}`)
   }
 
-
+  createRound(body: any) {
+    return this.httpClient.post(`${this.URL}/juego/crear/ronda`, body);
+  }
 }

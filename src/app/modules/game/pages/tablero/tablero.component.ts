@@ -7,7 +7,6 @@ import {PlayerService} from "../../services/player/player.service";
 import {Deck} from "../../models/deck.model";
 import {AllBoard, Round} from "../../models/board.model";
 
-
 @Component({
   selector: 'tableroComponent',
   templateUrl: './tablero.component.html',
@@ -19,7 +18,9 @@ export class TableroComponent implements OnInit {
   deck: Deck | null = null;
   boardInfo: AllBoard | null = null;
   round: Round | null = null;
+  tiempo: number = 0
   isMainPlayer: boolean = false;
+  numberOfPlayers: Round | null = null;
 
 
   constructor(
@@ -44,13 +45,29 @@ export class TableroComponent implements OnInit {
         console.log(this.gameId);
       });
 
-    this.websocketService.connect(this.gameId).subscribe((res) => {
-      console.log(res);
-    });
-     this.getDeckPlayer();
+    this.websocketService.connect(this.gameId).subscribe((res: any) => {
+        switch (res.type) {
+          case 'cardgame.tiempocambiadodeltablero':
+            this.tiempo = res.tiempo;
+            break;
+          case 'cardgame.rondainiciada':
+            this.round = res.round.numero;
+            this.numberOfPlayers = res.round.numberOfPlayers;
+            console.log(res);
+            break;
+          default :
+        }
+
+
+      }
+    )
+    ;
+    this.getDeckPlayer();
     this.getBoardId();
     console.log(this.gameId);
     console.log(this.userId);
+
+
   }
 
   getDeckPlayer() {
@@ -63,15 +80,18 @@ export class TableroComponent implements OnInit {
     });
   }
 
+
   getBoardId() {
     this.gameServices.getBoard(this.gameId).subscribe({
       next: (res) => {
         if (res) {
-          // console.log(res);
-          //  this.isMainPlayer = res.jugadorPrincipalId == this.userId;
           this.boardInfo = res;
-           console.log(this.boardInfo);
-          //console.log(res);
+
+
+          console.log(this.boardInfo);
+          console.log(res);
+
+
         } else {
           // this.sweetAlertService.errorMessage('Board not found!');
           console.log("board not found");

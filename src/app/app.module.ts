@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 //Routers
@@ -41,6 +41,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
         provideFirestore(() => getFirestore()),
         AuthModule,
         DragDropModule,
+        FormsModule,
     ],
   providers: [],
   bootstrap: [AppComponent],

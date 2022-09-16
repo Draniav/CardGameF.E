@@ -1,12 +1,15 @@
 <div class="container">
 
   <div class="cont-info">
-    <p>Ronda  </p>
+    <p>Ronda  {{boardInfo?.ronda?.numero}} </p>
     <p>Jugadores  {{boardInfo?.ronda?.jugadores?.length}}  </p>
   </div>
 
   <div class="cont-estado">
-    <p class="tiempo"> Tiempo: {{boardInfo?.tiempo}}</p>
+    <p class="tiempo" > Tiempo: {{boardInfo?.tiempo}}</p>
+
+    <p class="tiempo" > Tiempo: {{tiempo}}</p>
+
     <button   class="btn">INICIAR</button>
   </div>
 
@@ -36,7 +39,51 @@
     </div>
   </div>
 </div>
+<!--
+  this.websocketService.connect(this.gameId).subscribe({
+  next: (event: any) => {
+  if (event.type === 'cardgame.rondainiciada') {
+  this.roundStarted = true;
+  this.tiempo = event.tiempo;
+  this.numeroRonda = event.ronda.numero;
+  this.cartasDelJugador = this.cartasDelJugador;
+  }
 
+  this.websocketService.connect(this.gameId).subscribe({
+  next: (event: any) => {
+  if (event.type === 'cardgame.tiempocambiadodeltablero') {
+  this.tiempo = event.tiempo;
+  }
+  if (event.type === 'cardgame.rondacreada') {
+  this.tiempo = event.tiempo;
+  this.jugadoresRonda = event.ronda.jugadores.length
+  this.numeroRonda = event.ronda.numero;
+  }
+
+  if (event.type === 'cardgame.rondainiciada') {
+  this.roundStarted = true;
+  this.tiempo = event.tiempo;
+  this.numeroRonda = event.ronda.numero;
+  this.cartasDelJugador = this.cartasDelJugador;
+  }
+  }
+
+  getTablero(){
+  this.juegoService$.getTablero(this.juegoId).subscribe((event)=>{
+  this.tiempo = event.tiempo;
+  this.jugadoresRonda = event.tablero.jugadores.length;
+  this.jugadoresTablero = event.tablero.jugadores.length;
+  this.numeroRonda = event.ronda.numero;
+  })
+  }
+
+  getMazo() {
+  this.juegoService$.getMiMazo(this.uid, this.juegoId).subscribe((element: any) => {
+  this.cartasDelJugador = element.cartas
+  console.log(this.cartasDelJugador)
+  })
+  };
+-->
 </div>
 
 

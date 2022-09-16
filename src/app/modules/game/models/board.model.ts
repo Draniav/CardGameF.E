@@ -15,6 +15,7 @@ export interface Round {
   estaIniciada: boolean;
 }
 
+
 export interface AllBoard {
   tablero: Board;
   ronda: Round;
