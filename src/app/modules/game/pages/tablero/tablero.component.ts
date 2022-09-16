@@ -6,7 +6,7 @@ import {GameService} from "../../services/game/game-service.service";
 import {PlayerService} from "../../services/player/player.service";
 import {Deck} from "../../models/deck.model";
 import {AllBoard, Round} from "../../models/board.model";
-import {Card} from "../../models/card.model";
+import {Card, Carta} from "../../models/card.model";
 
 @Component({
   selector: 'tableroComponent',
@@ -19,11 +19,18 @@ export class TableroComponent implements OnInit {
   deck: Deck | null = null;
   boardInfo: AllBoard | null = null;
   round: Round | null = null;
-  tiempo: number = 0
+  tiempo: number = 0;
+  jugadoresRonda: number = 0;
+  numeroRonda: number = 0;
   isMainPlayer: boolean = false;
   numberOfPlayers: Round | null = null;
+  cardsOnBoard: Carta[] = [];
   cartasUser: Card[] = [];
-  banner =true;
+  idPlayer: [] = [];
+  banner = true;
+  btnIniciarHabilitado: boolean = true;
+  jugador!: string;
+
 
 
   constructor(
@@ -56,8 +63,33 @@ export class TableroComponent implements OnInit {
           case 'cardgame.rondainiciada':
             this.round = res.round.numero;
             this.numberOfPlayers = res.round.numberOfPlayers;
-            console.log(res);
+            this.cartasUser = this.cartasUser;
+            this.btnIniciarHabilitado = true;
             break;
+
+          case 'cardgame.ponercartaentablero':
+            this.jugador = res.jugadorId.uuid
+            this.cardsOnBoard.push({
+              cartaId: res.carta.cartaId,
+              poder: res.carta.poder,
+              estaOculta: res.carta.estaOculta,
+              estaHabilitada: res.carta.estaHabilitada,
+              url: res.carta.url,
+              jugador: this.jugador,
+            });
+            console.log("cartas en el tablero", this.cardsOnBoard)
+
+            break;
+          case 'cardgame.cartaquitadadelmazo':
+            this.cartasUser = this.cartasUser
+              .filter((item) => item.cartaId !== res.carta.cartaId.uuid);
+            break;
+          case 'cardgame.rondacreada':
+            this.tiempo = res.tiempo;
+            this.jugadoresRonda = res.ronda.jugadores.length
+            this.numeroRonda = res.ronda.numero
+            break;
+       
 
           default :
         }
@@ -120,6 +152,6 @@ export class TableroComponent implements OnInit {
   }
 
   ponerCarta(cartaId: string) {
-    console.log("ponerCarta"+ cartaId);
+    console.log("ponerCarta" + cartaId);
   }
 }
