@@ -1,4 +1,24 @@
+body {
+  height: 100%;
+  /* The image used */
+  background-image: url("../../../../../assets/bg_board3.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 3px solid;
+
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
 .container {
+
   display: flex;
   width: 95%;
   margin: 0 auto;
@@ -11,6 +31,7 @@
 .img-card {
   height: 100%;
   width: 100%;
+  border: 3px solid;
   border-radius: 10px;
   position: relative;
   bottom: 5px
@@ -65,6 +86,7 @@ p {
   background-image: linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
   text-decoration: none;
 }
+
 .cont-estado p {
   position: relative;
   top: 17px;
@@ -87,8 +109,11 @@ p {
 }
 
 .dashboard-mazo {
-  width: 35%;
-  padding: 10px;
+  overflow: scroll;
+  position: relative;
+  width: 30em;
+  height: 30em;
+  padding: 4px;
   -webkit-box-shadow: 0px 1px 4px 2px #ffffffef;
   box-shadow: 0px 1px 4px 2px rgba(255, 0, 30, 0.49);
   border-radius: 10px;
@@ -162,14 +187,16 @@ p {
   margin: 0 auto;
   border-radius: 10px
 }
-.card-mazo p{
+
+.card-mazo p {
   position: relative;
   bottom: 15px;
   text-align: center;
-  left:20px;
+  left: 20px;
   color: rgba(255, 0, 0, 0.49)
 }
-.power{
+
+.power {
   color: rgba(255, 0, 0, 0.49)
 }
 
@@ -185,7 +212,7 @@ p {
   -moz-border-radius-bottomleft: 10px;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-  height:20px;
+  height: 20px;
   text-align: center;
   display: flex;
 }
@@ -206,7 +233,7 @@ p {
 
   background: rgb(62, 139, 255);
   background-image: -webkit-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
-  background-image: -moz-linear-gradient(top,rgba(255, 0, 0, 0.49), #ffffff);
+  background-image: -moz-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
   background-image: -ms-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
   background-image: -o-linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
   background-image: linear-gradient(top, rgba(255, 0, 0, 0.49), #ffffff);
@@ -244,5 +271,121 @@ p {
 
   .cards-mazo {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+$base-duration: 500ms;
+
+// Colors
+$color-1: #2c3e50;
+$color-2: #1abc9c;
+$color-3: #2ecc71;
+
+// Breakpoints
+
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-smooth: auto;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #444;
+}
+
+body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  // background-color:darken($color-1, 4%);
+}
+
+figure {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 7cm;
+  width: 5cm;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+    img {
+      transform: scale(1);
+    }
+
+    figcaption {
+      bottom: 0;
+    }
+  }
+
+  h1 {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 30px;
+    font-weight: 100;
+    line-height: 1;
+  }
+
+  img {
+    height: 80%;
+    transition: 0.25s;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 80%;
+    margin: 0;
+    padding: 30px;
+    background-color: rgba(black, 0.85);
+    box-shadow: 0 0 20px rgba(black, 0.4);
+    color: white;
+    line-height: 1;
+    transition: 0.25s;
+
+    h3 {
+      margin: 0 0 20px;
+      padding: 0;
+    }
+
+    p {
+      font-size: 10px;
+      line-height: 1.75;
+    }
+
+    button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0 0;
+      padding: 10px 30px;
+      background-color: $color-2;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 10px;
+    }
   }
 }

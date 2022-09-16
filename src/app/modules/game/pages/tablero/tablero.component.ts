@@ -6,6 +6,7 @@ import {GameService} from "../../services/game/game-service.service";
 import {PlayerService} from "../../services/player/player.service";
 import {Deck} from "../../models/deck.model";
 import {AllBoard, Round} from "../../models/board.model";
+import {Card} from "../../models/card.model";
 
 @Component({
   selector: 'tableroComponent',
@@ -21,6 +22,8 @@ export class TableroComponent implements OnInit {
   tiempo: number = 0
   isMainPlayer: boolean = false;
   numberOfPlayers: Round | null = null;
+  cartasUser: Card[] = [];
+  banner =true;
 
 
   constructor(
@@ -55,6 +58,7 @@ export class TableroComponent implements OnInit {
             this.numberOfPlayers = res.round.numberOfPlayers;
             console.log(res);
             break;
+
           default :
         }
 
@@ -74,8 +78,11 @@ export class TableroComponent implements OnInit {
     this.gameServices.getDeckByPlayer(this.gameId).subscribe({
 
       next: (res) => {
-        this.deck = res;
-        console.log(this.deck);
+        this.cartasUser = res.cartas;
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
       },
     });
   }
@@ -93,7 +100,7 @@ export class TableroComponent implements OnInit {
 
 
         } else {
-          // this.sweetAlertService.errorMessage('Board not found!');
+
           console.log("board not found");
           this.router.navigate(['/game/lobby']);
         }
@@ -110,5 +117,9 @@ export class TableroComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  ponerCarta(cartaId: string) {
+    console.log("ponerCarta"+ cartaId);
   }
 }
