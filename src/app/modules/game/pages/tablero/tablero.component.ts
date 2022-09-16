@@ -51,7 +51,7 @@ export class TableroComponent implements OnInit {
   ngOnInit(): void {
 
     console.log(Number(this.numeroRonda))
-    if (Number(this.numeroRonda) >= 0) {
+    if (Number(this.numeroRonda) >= 5) {
       this.cursedUser = Math.floor(Math.random() * 2);
       console.log(this.cursedUser)
       if (this.cursedUser == 1) {
