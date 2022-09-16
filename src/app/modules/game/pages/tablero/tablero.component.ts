@@ -99,7 +99,7 @@ export class TableroComponent implements OnInit {
             alert(res.alias + "Wins the Arena!!!")
             alert("Ganador del Juego: " + this.Winner)
             setTimeout(() => {
-              this.router.navigate(['juego/home']);
+              this.router.navigate(['/game/lobby']);
             }, 500);
             break
           case 'cardgame.rondaterminada':
@@ -203,8 +203,12 @@ export class TableroComponent implements OnInit {
     this.gameServices.putCardOnBoard({
       juegoId: this.gameId,
       cartaId: cartaId,
-      jugadorId: this.uid
+      jugadorId: this.userId
+
     }).subscribe(e => console.log(e))
+
+    console.log("ponerCarta" + this.gameId);
     console.log("ponerCarta" + cartaId);
+    console.log("ponerCarta" + this.userId);
   }
 }
