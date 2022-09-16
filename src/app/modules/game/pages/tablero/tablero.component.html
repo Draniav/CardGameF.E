@@ -11,7 +11,7 @@
     </div>
 
     <div class="cont-estado">
-      <p class="tiempo"> Tiempo: {{boardInfo?.tiempo}}</p>
+
 
       <p class="tiempo"> Tiempo: {{tiempo}}</p>
 
@@ -29,7 +29,7 @@
       <p>Partida</p>
       <div class="cards">
         <div ngFor="let card of cartasDelTablero" class="card">
-          <img class="img-card" alt="img"/>
+          <img class="img-card" src="assets/BG_Home.jpg" alt="img"/>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
           <h3>
             POWER !!!
           </h3>
-          <p >{{(banner)?cartas.poder/2:cartas.poder}}</p>
+          <p >{{Math.round((banner)?cartas.poder/2:cartas.poder)}}</p>
           <button (click)="ponerCarta(cartas.cartaId)">
           Bet Card
           </button>

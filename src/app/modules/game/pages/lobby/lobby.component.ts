@@ -59,7 +59,7 @@ export class LobbyComponent implements OnInit {
         if(event.type === 'cardgame.tablerocreado'){
           this.gameService$.createRound({
             juegoId: gameId,
-            tiempo: 80,
+            tiempo: 60,
             jugadores:
               event.jugadorIds.map
               ((it:any) => it.uuid)
@@ -74,6 +74,7 @@ export class LobbyComponent implements OnInit {
       complete: () => console.log('complete')
     });
     this.gameService$.startGame({ juegoId: gameId }).subscribe();
+    console.log('start game started');
   }
 
 

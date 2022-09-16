@@ -34,6 +34,8 @@ export class TableroComponent implements OnInit {
   jugador!: string;
   uid!: string;
   Winner: string = "";
+  cursedUser: number = 0;
+  Math: Math = Math;
 
 
   constructor(
@@ -47,6 +49,19 @@ export class TableroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log(Number(this.numeroRonda))
+    if (Number(this.numeroRonda) >= 0) {
+      this.cursedUser = Math.floor(Math.random() * 2);
+      console.log(this.cursedUser)
+      if (this.cursedUser == 1) {
+        alert(this.userId + "was cursed for DR.DOOM´s will,  the power will be halved HahAHhaHAHHAHAH!")
+        console.log(this.userId)
+        this.banner = false;
+      }
+    }
+    ;
+
     this.activatedRoute.params
       .pipe(
         switchMap(({id}) => {
@@ -55,10 +70,11 @@ export class TableroComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        console.log(this.gameId);
+
       });
 
     this.websocketService.connect(this.gameId).subscribe((res: any) => {
+
         switch (res.type) {
           case 'cardgame.tiempocambiadodeltablero':
             this.tiempo = res.tiempo;
@@ -68,6 +84,8 @@ export class TableroComponent implements OnInit {
             this.numberOfPlayers = res.round.numberOfPlayers;
             this.cartasUser = this.cartasUser;
             this.btnIniciarHabilitado = true;
+
+
             break;
 
           case 'cardgame.ponercartaentablero':
@@ -105,12 +123,23 @@ export class TableroComponent implements OnInit {
           case 'cardgame.rondaterminada':
             this.rondaIniciada = false;
             this.cardsOnBoard = [];
+            this.banner = true; //
             break
 
           case 'cardgame.cartasasignadasajugador':
 
-            console.log("ronda pura", this.numeroRonda);
-            console.log("mazo jugador # 3", this.cartasUser)
+            if (res.ganadorId.uuid === this.userId) {
+              res.cartasApuesta.forEach((carta: any) => {
+                this.cartasUser.push({
+                  cartaId: res.carta.cartaId,
+                  estaOculta: res.carta.estaOculta,
+                  estaHabilitada: res.carta.estaHabilitada,
+                  poder: res.carta.poder,
+                  url: res.carta.url,
+                  nombre: res.carta.nombre
+                });
+              });
+            }
             if (res.ganadorId.uuid === this.uid) {
               this.cardsOnBoard.forEach((carta: any) => {
 
@@ -125,8 +154,6 @@ export class TableroComponent implements OnInit {
                 });
 
 
-
-
               });
               console.log("mazo jugador", this.cartasUser)
 
@@ -137,7 +164,6 @@ export class TableroComponent implements OnInit {
 
           default :
         }
-
 
       }
     )
@@ -185,16 +211,15 @@ export class TableroComponent implements OnInit {
   }
 
   initGame() {
-    this.gameServices.startGame({juegoId: this.gameId}).subscribe({
-
-      next: (res) => {
-        console.log(res);
+    this.gameServices.initRound(this.gameId).subscribe({
+      next: (ronda) => {
+        console.log(ronda);
       },
-      error: (err) => {
-        console.log(err);
-      },
+      error: (error) => console.log(error),
+      complete: () => console.log('ronda Iniciada')
     });
   }
+
 
   ponerCarta(cartaId: string) {
     this.gameServices.putCardOnBoard({

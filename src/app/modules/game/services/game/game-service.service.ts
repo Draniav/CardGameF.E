@@ -48,4 +48,7 @@ export class GameService {
     return this.httpClient.post(`${this.URL}/juego/poner`, {...body});
   }
 
+  initRound(gameId: string) {
+    return this.httpClient.post(`${this.URL}/juego/ronda/iniciar`, { juegoId: gameId });
+  }
 }

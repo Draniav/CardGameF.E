@@ -1,4 +1,4 @@
-<div class="HomeForm"  align="" center>
+<div class="HomeForm" align="" center>
   <h1 align=" center">Pick the players</h1>
   <body>
 
@@ -17,19 +17,19 @@
 
       </option>
     </select>
-    <p>  <br>        </p>
-    <p>  <h2><label *ngIf="form.invalid && form.touched">{{
-    form.get("players")?.getError("minRequired")
-    }}</label>
-  </h2>
+    <p><br></p>
+    <p>
+    <h2><label *ngIf="form.invalid && form.touched">{{
+      form.get("players")?.getError("minRequired")
+      }}</label>
+    </h2>
 
-    <button class="button" (click)="goHome()"> Home </button>
+    <button class="button" (click)="goHome()"> Home</button>
 
     <button class="button" [disabled]="form.invalid" (click)="submit(this)" type="submit">Create Game</button>
 
-    <!--
-         <button class="button" (click)="logOut()"> LogOut</button>
-         -->
+    <button class="button" (click)="logOut()"> LogOut</button>
+
 
   </form>
   </body>
